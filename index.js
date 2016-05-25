@@ -14,7 +14,11 @@ module.exports = {
 		data.split('\n').forEach(function(part){
 			if(!part) return;
 
-		  attrColon = part.indexOf(': ');
+			if(/:[\r\n|\n|\r]+$/.test(part)){
+				attrColon = part.indexOf(':');
+			} else {
+				attrColon = part.indexOf(': ');
+			}
 			attr = part.substr(0, attrColon);
 
 			if(attr !== ''){
